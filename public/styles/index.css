@@ -1,0 +1,9 @@
+
+@font-face {
+  font-family: Inspira;
+  src: local("{{url_for('static', filename='fonts/GEInspiraSans-Regular-v02.ttf')}}"), url("{{url_for('static', filename='fonts/GEInspiraSans-Regular-v02.ttf')}}")
+}
+
+.current-time {
+  text-align: right;
+}

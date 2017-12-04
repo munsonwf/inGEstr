@@ -1,0 +1,15 @@
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    width: 150px;
+    text-align: center;
+}
+td {
+    height: 150px;
+    vertical-align: top;
+    text-align: right;
+}

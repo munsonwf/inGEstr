@@ -1,0 +1,161 @@
+.modal-dialog {
+    max-width: 600px;
+}
+.row {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+@font-face {
+  font-family: Inspira;
+  src:url("fonts/GEInspiraSans-Regular-v02.ttf");
+
+}
+
+.title-bar{
+  margin-top: 26px;
+  margin-bottom: 26px;
+}
+
+#all, #todaysIngestion {
+    width: 550px;
+    margin: 50px auto;
+    border: 1px solid black;
+    padding: 50px;
+}
+/*.space {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}*/
+
+.title {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+#time, #queries {
+    width: 120px;
+}
+
+#main {
+    /*width: 500px;*/
+    margin: auto;
+    /*text-align: center;*/
+    padding: 0;
+}
+
+.form-check-label {
+    padding-left: 0;
+}
+/*
+form {
+    display: table;
+}
+
+.rowish {
+    display: table-row;
+}
+
+div label {
+    display: table-cell;
+}
+*/
+#queries, #time {
+    /*display: table-cell;*/
+    text-align: center;
+    float: right;
+}
+#date-title {
+    float: left;
+}
+
+/*#report_date {
+    float: right !important;
+}*/
+
+#date-row {
+    margin-bottom: 16px;
+}
+
+#todaysReportYes {
+    color: #00BF6F;
+    text-align: center;
+}
+
+#todaysReportNo {
+    color: #FE5000;
+    text-align: center;
+}
+
+.navbar {
+  background-color: #005EB8;
+}
+
+/* MAKES HEADER LINKS WHITE FONT */
+.nav-link, .navbar-brand {
+  color: #fff;
+}
+
+.floatleft {
+    float:left;
+}
+.floatright {
+    float:right;
+}
+
+.ul {
+  list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+a:hover {
+  color:#9bc1ff;
+}
+
+/*#reportBtn {
+  width: 400px;
+  margin: 25px auto;
+
+}*/
+#select-date {
+    color: #868e96;
+}
+
+.card {
+      margin: 0 auto; /* Added */
+      float: none; /* Added */
+      margin-bottom: 10px; /* Added */
+}
+p, h1, h2, h3, h4, h5, h6{
+  text-align: center;
+}
+.row {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.table {
+  float:right;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+td {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+th {
+  text-align: center !important;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.erp-card-failed {
+  color: red
+}
