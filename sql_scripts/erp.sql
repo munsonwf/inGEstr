@@ -8,17 +8,17 @@ CREATE TABLE erps (
 );
 
 INSERT INTO erps (erp_name, date_field, is_failure) VALUES
-    ('alpha', '12/5/17', TRUE),
-    ('altais', '12/5/17', FALSE),
-    ('apcis', '12/5/17', TRUE),
-    ('bravo', '12/5/17', TRUE),
-    ('fusion', '12/5/17', TRUE),
-    ('glprod', '12/5/17', TRUE),
-    ('get_erp', '12/5/17', TRUE),
-    ('ipus', '12/5/17', FALSE),
-    ('omega', '12/5/17', TRUE),
-    ('ofs', '12/5/17', TRUE),
-    ('pascal', '12/5/17', TRUE),
-    ('powermax', '12/5/17', TRUE),
-    ('races', '12/5/17', TRUE),
-    ('zeal', '12/5/17', TRUE);
+    ('alpha', '12/8/17', TRUE),
+    ('altais', '12/8/17', FALSE),
+    ('apcis', '12/8/17', TRUE),
+    ('bravo', '12/8/17', FALSE),
+    ('fusion', '12/8/17', TRUE),
+    ('glprod', '12/8/17', TRUE),
+    ('get_erp', '12/8/17', TRUE),
+    ('ipus', '12/8/17', FALSE),
+    ('omega', '12/8/17', FALSE),
+    ('ofs', '12/8/17', TRUE),
+    ('pascal', '12/8/17', FALSE),
+    ('powermax', '12/8/17', FALSE),
+    ('races', '12/8/17', FALSE),
+    ('zeal', '12/8/17', TRUE);

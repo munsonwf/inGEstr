@@ -13,6 +13,14 @@
       text-align:left;
     }
 
+    .fa {
+      color: #005EB8;
+    }
+
+    i {
+      text-align: center;
+    }
+
     .report-date-div {
       margin-left: 28px !important;
       margin-bottom: 10px !important;
@@ -22,11 +30,12 @@
     }
 
     .report-card {
-      height:196px;
+      height:165px;
+      padding: 10px !important;
     }
 
     .erp-card {
-      height: 100px;
+      padding: 10px !important;
     }
 
     .right {
@@ -100,13 +109,7 @@
                       <div class="col-sm-4"><label>Queries Failed:</label></div>
                       <div class="col-sm-8">
                           <input id="queries_failed-modal" type="number" class="form-control" placeholder="" min="0" max="78">
-                          <small id="emailHelp" class="form-text text-muted">Out of 78</small>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-sm-4"><label>Current Record:</label></div>
-                      <div class="col-sm-8">
-                          <input id="current_record-modal" type="number" class="form-control" placeholder="" min="0">
+                          <small id="emailHelp" class="form-text text-muted">Out of 83</small>
                       </div>
                   </div>
                   <div class="row">
@@ -120,104 +123,96 @@
                   <div class="row">
                       <div class="col-sm-12"><label>Select the ERP's that Failed:</label></div>
                   </div>
-                  <div class="row">
-                      <div class="col-sm-2">
-                          <label class="form-check-label">
-                              <input id="alpha-modal" class="for-check-input" type="checkbox" value="">
-                              Alpha
-                          </label>
-                      </div>
-                      <div class="col-sm-2">
-                          <label class="form-check-label">
-                              <input id="altais-modal" class="for-check-input" type="checkbox" value="">
-                              Altais
-                          </label>
-                      </div>
-                      <div class="col-sm-2">
-                          <label class="form-check-label">
-                              <input id="apcis-modal" class="for-check-input" type="checkbox" value="">
-                              APCIS
-                          </label>
-                      </div>
-                      <div class="col-sm-2">
-                          <label class="form-check-label">
-                              <input id="bravo-modal" class="for-check-input" type="checkbox" value="">
-                              Bravo
-                          </label>
-                      </div>
-                      <div class="col-sm-2">
-                          <label class="form-check-label">
-                              <input id="fusion-modal" class="for-check-input" type="checkbox" value="">
-                              Fusion
-                          </label>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-sm-2">
-                          <label class="form-check-label">
-                              <input id="glprod-modal" class="for-check-input" type="checkbox" value="">
-                              glprod
-                          </label>
-                      </div>
-                      <div class="col-sm-2">
-                          <label class="form-check-label">
-                              <input id="get_ora-modal" class="for-check-input" type="checkbox" value="">
-                              GET
-                          </label>
-                      </div>
-                      <div class="col-sm-2">
-                          <label class="form-check-label">
-                              <input id="ipus-modal" class="for-check-input" type="checkbox" value="">
-                              IPUS
-                          </label>
-                      </div>
-                      <div class="col-sm-2">
-                          <label class="form-check-label">
-                              <input id="omega-modal" class="for-check-input" type="checkbox" value="">
-                              Omega
-                          </label>
-                      </div>
-                      <div class="col-sm-2">
-                          <label class="form-check-label">
-                              <input id="ofs-modal" class="for-check-input" type="checkbox" value="">
-                              OFS
-                          </label>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-sm-2">
-                          <label class="form-check-label">
-                              <input id="pascal-modal" class="for-check-input" type="checkbox" value="">
-                              Pascal
-                          </label>
-                      </div>
-                      <div class="col-sm-2">
-                          <label class="form-check-label">
-                              <input id="powermax-modal" class="for-check-input" type="checkbox" value="">
-                              P-Max
-                          </label>
-                      </div>
-                      <div class="col-sm-2">
-                          <label class="form-check-label">
-                              <input id="races-modal" class="for-check-input" type="checkbox" value="">
-                              Races
-                          </label>
-                      </div>
-                      <div class="col-sm-2">
-                          <label class="form-check-label">
-                              <input id="zeal-modal" class="for-check-input" type="checkbox" value="">
-                              Zeal
-                          </label>
-                      </div>
-                  </div>
-
-
-
-
-
-
-
-
+                  <table id='checkbox-table'>
+                      <tr>
+                          <td>
+                              <label class="form-check-label">
+                                  <input id="alpha-modal" class="for-check-input" type="checkbox" value="">
+                                  Alpha
+                              </label>
+                          </td>
+                          <td>
+                              <label class="form-check-label">
+                                  <input id="altais-modal" class="for-check-input" type="checkbox" value="">
+                                  Altais
+                              </label>
+                          </td>
+                          <td>
+                              <label class="form-check-label">
+                                  <input id="apcis-modal" class="for-check-input" type="checkbox" value="">
+                                  APCIS
+                              </label>
+                          </td>
+                          <td>
+                              <label class="form-check-label">
+                                  <input id="bravo-modal" class="for-check-input" type="checkbox" value="">
+                                  Bravo
+                              </label>
+                          </td>
+                          <td>
+                              <label class="form-check-label">
+                                  <input id="fusion-modal" class="for-check-input" type="checkbox" value="">
+                                  Fusion
+                              </label>
+                          </td>
+                          <td>
+                              <label class="form-check-label">
+                                  <input id="glprod-modal" class="for-check-input" type="checkbox" value="">
+                                  glprod
+                              </label>
+                          </td>
+                          <td>
+                              <label class="form-check-label">
+                                  <input id="get_ora-modal" class="for-check-input" type="checkbox" value="">
+                                  GET
+                              </label>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <label class="form-check-label">
+                                  <input id="ipus-modal" class="for-check-input" type="checkbox" value="">
+                                  IPUS
+                              </label>
+                          </td>
+                          <td>
+                              <label class="form-check-label">
+                                  <input id="omega-modal" class="for-check-input" type="checkbox" value="">
+                                  Omega
+                              </label>
+                          </td>
+                          <td>
+                              <label class="form-check-label">
+                                  <input id="ofs-modal" class="for-check-input" type="checkbox" value="">
+                                  OFS
+                              </label>
+                          </td>
+                          <td>
+                              <label class="form-check-label">
+                                  <input id="pascal-modal" class="for-check-input" type="checkbox" value="">
+                                  Pascal
+                              </label>
+                          </td>
+                          <td>
+                              <label class="form-check-label">
+                                  <input id="powermax-modal" class="for-check-input" type="checkbox" value="">
+                                  P-Max
+                              </label>
+                          </td>
+                          <td>
+                              <label class="form-check-label">
+                                  <input id="races-modal" class="for-check-input" type="checkbox" value="">
+                                  Races
+                              </label>
+                          </td>
+                          <td>
+                              <label class="form-check-label">
+                                  <input id="zeal-modal" class="for-check-input" type="checkbox" value="">
+                                  Zeal
+                              </label>
+                          </td>
+                      </tr>
+                  </table>
 
 
 
@@ -272,7 +267,7 @@
 
         <div class="container-fluid">
           <div class="report-date-div" style="margin:5px">
-            <h3 id="report-date-h3"><i class="fa fa-file-text-o" aria-hidden="true"></i>  Report for: <b><span id="report_date"></span></b></h3>
+            <h3 id="report-date-h3"><i class="fa fa-file-text-o" aria-hidden="true"></i><span id="report-date-h3-text">  Report for: <b><span id="report_date"></span></b></span></h3>
           </div>
 
 
@@ -281,7 +276,7 @@
             <div class="col">
               <div class="card">
                 <div class="card-body report-card">
-                  <h2><i class="fa fa-check-square-o" aria-hidden="true"></i></h2>
+                  <h2><i class="fa fa-power-off" style="color:#005EB8"aria-hidden="true"></i></h2>
                   <h4 class="card-title">Status</h4>
 
                   <!-- <p>How did we do? -->
@@ -298,7 +293,7 @@
                   <h4 class="card-title"> Queries Failed</h4>
                   <!-- <p class="card-text">Queries failed to complete.</p> -->
                   <h2 class="card-data" id="queries_failed"></h2>
-                  <h6>of 80</h6>
+                  <span><h6>of 83</h6></span>
                 </div>
               </div>
             </div>
@@ -311,7 +306,7 @@
                   <h4 class="card-title">Completion Time</h4>
 
                   <!-- <p class="card-text">Time ingestion completed.</p> -->
-                  <h2 class="card-data" id="new-record"><span id="completion_time"></span></b></h2>
+                  <h2 class="card-data" id="comp-time"><span id="completion_time"></span></b></h2>
                   <h6>EDT</h6>
                 </div>
               </div>
@@ -326,7 +321,7 @@
                   <h4 class="card-title">Current Record</h4>
 
                   <!-- <p class="card-text">Standing record.</p> -->
-                  <h2 class="card-data" id="new-record">1 Day</h2>
+                  <h2 class="card-data" id="new-record"></h2>
                   <h6>Day(s)</h6>
                 </div>
               </div>
@@ -339,6 +334,102 @@
             <p><b>Notes: </b><span id="comments"></span></p>
           </div>
         </div>
+
+        <!-- ///////////////////////
+        // BUSINESS AFFECTED //
+        /////////////////////// -->
+
+        <div class="container-fluid">
+          <div class="report-date-div" style="margin:5px">
+            <h3 id="report-date-h3"><i class="fa fa-briefcase" aria-hidden="true"></i> Business Status</h3>
+          </div>
+        </div>
+
+        <!-- FIRST ERP ROW -->
+        <div class="row" style="margin:10px; margin-left:15px;">
+
+          <!-- POWER -->
+          <div class="col">
+            <div class="card">
+              <div class="card-body erp-card">
+                <h2><i class="fa fa-bolt" aria-hidden="true"></i></h2>
+                <h4 class="card-title">Power</h4>
+                <h2 class="card-data" id="powerStatus"></h2>
+              </div>
+            </div>
+          </div>
+
+          <!-- ENERGY CONNECTIONS -->
+          <div class="col">
+            <div class="card">
+              <div class="card-body erp-card">
+                <h2><i class="fa fa-plug" aria-hidden="true"></i></i></h2>
+                <h4 class="card-title">EC</h4>
+                <h2 class="card-data" id="energyConnectionsStatus"></h2>
+              </div>
+            </div>
+          </div>
+
+          <!-- HEALTHCARE -->
+          <div class="col">
+            <div class="card">
+              <div class="card-body erp-card">
+                <h2><i class="fa fa-medkit" aria-hidden="true"></i></h2>
+                <h4 class="card-title">Healthcare</h4>
+                <h2 class="card-data" id="healthCareStatus"></h2>
+              </div>
+            </div>
+          </div>
+
+          <!-- RENEWABLES -->
+          <div class="col">
+            <div class="card">
+              <div class="card-body erp-card">
+                <h2><i class="fa fa-sun-o" aria-hidden="true"></i></h2>
+                <h4 class="card-title">Renewables</h4>
+                <h2 class="card-data" id="renewablesStatus"></h2>
+              </div>
+            </div>
+          </div>
+
+          <!-- TRANSPORTATION -->
+          <div class="col">
+            <div class="card">
+              <div class="card-body erp-card">
+                <h2><i class="fa fa-train" aria-hidden="true"></i></h2>
+                <h4 class="card-title">Transportation</h4>
+                <h2 class="card-data" id="transportationStatus"></h2>
+              </div>
+            </div>
+          </div>
+
+          <!-- OIL & GAS -->
+          <div class="col">
+            <div class="card">
+              <div class="card-body erp-card">
+                <h2><i class="fa fa-tint" aria-hidden="true"></i></h2>
+                <h4 class="card-title">Oil &amp; Gas</h4>
+                <h2 class="card-data" id="oilGasStatus"></h2>
+              </div>
+            </div>
+          </div>
+
+          <!-- MULTI MODAL -->
+          <div class="col">
+            <div class="card">
+              <div class="card-body erp-card">
+                <h2><i class="fa fa-cogs" aria-hidden="true"></i></h2>
+                <h4 class="card-title">Multi Modal</h4>
+                <h2 class="card-data" id="multiModalStatus"></h2>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ///////////////////////
+        /////// ERP STATUS  ////////
+        /////////////////////// -->
 
         <!-- ERP DATA HEADER -->
         <div class="container-fluid">
@@ -354,8 +445,11 @@
           <div class="col">
             <div class="card">
               <div class="card-body erp-card">
-                <h4 class="card-title">Aplha</h4>
+                <h4 class="card-title">Alpha</h4>
+                <p><i class="fa fa-bolt" aria-hidden="true"></i></p>
                 <h2 class="card-data" id="alpha"></h2>
+                <!-- <h2><i class="fa fa-check" style="color:#00BF6F;" aria-hidden="true"></i></h2> -->
+
               </div>
             </div>
           </div>
@@ -364,7 +458,8 @@
           <div class="col">
             <div class="card">
               <div class="card-body erp-card">
-                <h4 class="card-title">Aplha</h4>
+                <h4 class="card-title">Altais</h4>
+                <p><i class="fa fa-plug" aria-hidden="true"></i></p>
                 <h2 class="card-data" id="altais"></h2>
               </div>
             </div>
@@ -375,6 +470,7 @@
             <div class="card">
               <div class="card-body erp-card">
                 <h4 class="card-title">APCIS</h4>
+                <p><i class="fa fa-plug" aria-hidden="true"></i></p>
                 <h2 class="card-data" id="apcis"></h2>
               </div>
             </div>
@@ -385,6 +481,7 @@
             <div class="card">
               <div class="card-body erp-card">
                 <h4 class="card-title">Bravo</h4>
+                <p><i class="fa fa-plug" aria-hidden="true"></i></p>
                 <h2 class="card-data" id="bravo"></h2>
               </div>
             </div>
@@ -395,6 +492,7 @@
             <div class="card">
               <div class="card-body erp-card">
                 <h4 class="card-title">Fusion</h4>
+                <p><i class="fa fa-plug" aria-hidden="true"></i></p>
                 <h2 class="card-data" id="fusion"></h2>
               </div>
             </div>
@@ -405,6 +503,7 @@
             <div class="card">
               <div class="card-body erp-card">
                 <h4 class="card-title">GLPROD</h4>
+                <p><i class="fa fa-medkit" aria-hidden="true"></i></p>
                 <h2 class="card-data" id="glprod"></h2>
               </div>
             </div>
@@ -415,6 +514,7 @@
             <div class="card">
               <div class="card-body erp-card">
                 <h4 class="card-title">GET</h4>
+                <p><i class="fa fa-train" aria-hidden="true"></i></p>
                 <h2 class="card-data" id="get_erp"></h2>
               </div>
             </div>
@@ -429,6 +529,7 @@
             <div class="card">
               <div class="card-body erp-card">
                 <h4 class="card-title">IPUS</h4>
+                <p><i class="fa fa-plug" aria-hidden="true"></i></p>
                 <h2 class="card-data" id="ipus"></h2>
               </div>
             </div>
@@ -439,6 +540,7 @@
             <div class="card">
               <div class="card-body erp-card">
                 <h4 class="card-title">Omega</h4>
+                <p><i class="fa fa-cogs" aria-hidden="true"></i></p>
                 <h2 class="card-data" id="omega"></h2>
               </div>
             </div>
@@ -449,6 +551,7 @@
             <div class="card">
               <div class="card-body erp-card">
                 <h4 class="card-title">OFS</h4>
+                <p><i class="fa fa-bolt" aria-hidden="true"></i></p>
                 <h2 class="card-data" id="ofs"></h2>
               </div>
             </div>
@@ -459,6 +562,7 @@
             <div class="card">
               <div class="card-body erp-card">
                 <h4 class="card-title">Pascal</h4>
+                <p><i class="fa fa-tint" aria-hidden="true"></i></p>
                 <h2 class="card-data" id="pascal"></h2>
               </div>
             </div>
@@ -469,6 +573,7 @@
             <div class="card">
               <div class="card-body erp-card">
                 <h4 class="card-title">PowerMax</h4>
+                <p><i class="fa fa-sun-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-bolt" aria-hidden="true"></i></p>
                 <h2 class="card-data" id="powermax"></h2>
               </div>
             </div>
@@ -479,22 +584,38 @@
             <div class="card">
               <div class="card-body erp-card">
                 <h4 class="card-title">RACES</h4>
+                <p><i class="fa fa-sun-o" aria-hidden="true"></i></p>
                 <h2 class="card-data" id="races"></h2>
               </div>
             </div>
           </div>
 
-          <!-- ZREAL -->
+          <!-- ZEAL -->
           <div class="col">
             <div class="card">
               <div class="card-body erp-card">
                 <h4 class="card-title">ZEAL</h4>
+                <p><i class="fa fa-cogs" aria-hidden="true"></i></p>
                 <h2 class="card-data" id="zeal"></h2>
               </div>
             </div>
           </div>
 
         </div>
+
+        <!-- ICON LEGEND -->
+        <div class="container">
+          <p>
+            <i class="fa fa-bolt" aria-hidden="true"></i> Power, &nbsp;&nbsp;
+            <i class="fa fa-plug" aria-hidden="true"></i> Energy Connections, &nbsp;&nbsp;
+            <i class="fa fa-medkit" aria-hidden="true"></i> Healthcare, &nbsp;&nbsp;
+            <i class="fa fa-sun-o" aria-hidden="true"></i> Renewables, &nbsp;&nbsp;
+            <i class="fa fa-train" aria-hidden="true"></i> Transportation, &nbsp;&nbsp;
+            <i class="fa fa-tint" aria-hidden="true"></i> Oil &amp; Gas, &nbsp;&nbsp;
+            <i class="fa fa-cogs" aria-hidden="true"></i> Multi-Modal
+          </p>
+        </div>
+
 
 
         <!-- HISTORICAL DATA HEADER -->
@@ -520,23 +641,6 @@
         </div>
 
 
-          <!-- <div class="additional-data" style="margin-top:20px">
-            <h4>Additional Data</h4>
-            <ul class="list-group">
-              <li class="list-group-item">Time Completed: </li>
-              <li class="list-group-item">Date Completed: </li>
-              <li class="list-group-item">Notes: </li>
-            </ul>
-          </div>
-
-          <div class="col">
-            <h2>Report Card</h2>
-            <input type="button" value="Query Reort Card" onclick="generateTable()" />
-            <div class="row">
-              <div id="dvTable">
-              </div>
-            </div>
-          </div> -->
 
         <!-- jQuery & Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

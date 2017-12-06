@@ -60,16 +60,6 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/api/erps/limit140', function(request, response) {
-        Erps.findAll({
-          order: [
-            ['id', 'DESC']
-          ],
-          limit: 140
-        }).then(erps => {
-            response.json(erps);
-        });
-    });
 
     app.post('/api/reports', function(request, response) {
         console.log('Post Request:\n', request.body, '\nCreating entry...');
@@ -98,6 +88,30 @@ module.exports = function(app) {
 
     app.get('/api/erps', function(request, response) {
         Erps.findAll().then(erps => {
+            response.json(erps);
+        });
+    });
+
+    // Return most recent 14
+    app.get('/api/erps/limit14', function(request, response) {
+        Erps.findAll({
+          order: [
+            ['id', 'DESC']
+          ],
+          limit: 14
+        }).then(erps => {
+            response.json(erps);
+        });
+    });
+
+    //Return most recent 140
+    app.get('/api/erps/limit140', function(request, response) {
+        Erps.findAll({
+          order: [
+            ['id', 'DESC']
+          ],
+          limit: 140
+        }).then(erps => {
             response.json(erps);
         });
     });

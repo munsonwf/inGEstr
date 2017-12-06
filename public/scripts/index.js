@@ -33,6 +33,55 @@ var run = {
         // today = mm + '/' + dd + '/' + (yyyy % 2000);   //old format, doesnt match the date picker format
         $('#todays-date').text(today);
     },
+    inputsValid: function(){
+      console.log('Verifying Input...');
+      var inputsAreValid = true; //innocent until proven guilty
+      entry.report_date = $('#report_date-modal').val();
+      entry.completion_time = $('#completion_time-modal').val();
+      entry.queries_failed = $('#queries_failed-modal').val();
+      entry.success = $('#success-modal').prop('checked');
+      entry.comments = $('#comments-modal').val();
+
+      console.log('validing this entry: ',entry);
+      // check date
+      if(entry.report_date == '' || entry.report_date > today){
+        $('#report_date-modal').css('border-color', 'red');
+        inputsAreValid = false;
+      }
+      else {
+        $('#report_date-modal').css('border-color', '');
+      }
+
+      // check completion time
+      if(entry.completion_time == ''){
+        $('#completion_time-modal').css('border-color', 'red');
+        inputsAreValid = false;
+      }
+      else {
+        $('#completion_time-modal').css('border-color', '');
+      }
+
+      // check queries failed
+      //replace 83 with jame's variable he added later
+      if(entry.queries_failed == '' || entry.queries_failed < 0 || entry.queries_failed > 83){
+        $('#queries_failed-modal').css('border-color', 'red');
+        inputsAreValid = false;
+      }
+      else {
+        $('#queries_failed-modal').css('border-color', '');
+      }
+
+      // check comments
+      if(entry.comments.length > 250){
+        $('#comments-modal').css('border-color', 'red');
+        inputsAreValid = false;
+      }
+      else {
+        $('#comments-modal').css('border-color', '');
+      }
+
+      return inputsAreValid;
+    },
     getInput: function() {
         console.log('Getting Input...');
         entry.report_date = $('#report_date-modal').val();
@@ -103,6 +152,16 @@ var run = {
 
         console.log('Input:', entry1);
     },
+    getCurrRecord(reports){
+      var streak = 0;
+      var i = 0;
+      while(reports[i].success){
+        streak++;
+        i++;
+      }
+      return streak;
+    },
+
     post: function(ent) {
         console.log('Posting:', ent);
         $.ajax("http://localhost:3000/api/reports", {
@@ -128,26 +187,30 @@ var run = {
 };
 
 $('#submit-modal').on('click', function() {
-    run.getInput();
-    run.getInputErps();
-    run.post(entry);
-    run.post2(entry1);
-    run.post2(entry2);
-    run.post2(entry3);
-    run.post2(entry4);
-    run.post2(entry5);
-    run.post2(entry6);
-    run.post2(entry7);
-    run.post2(entry8);
-    run.post2(entry9);
-    run.post2(entry10);
-    run.post2(entry11);
-    run.post2(entry12);
-    run.post2(entry13);
-    run.post2(entry14);
-    $('#exampleModal').modal('hide');  //close the modal window
-    location.reload();
-    // renderReportHistory();  //"dynamically" re-renders all of the reports (including the newly added one) after the submit button has been clicked.
+    var inputsAreValid = run.inputsValid();
+    console.log('inputsAreValid:', inputsAreValid);
+    if(inputsAreValid){
+      run.getInput();
+      run.getInputErps();
+      run.post(entry);
+      run.post2(entry1);
+      run.post2(entry2);
+      run.post2(entry3);
+      run.post2(entry4);
+      run.post2(entry5);
+      run.post2(entry6);
+      run.post2(entry7);
+      run.post2(entry8);
+      run.post2(entry9);
+      run.post2(entry10);
+      run.post2(entry11);
+      run.post2(entry12);
+      run.post2(entry13);
+      run.post2(entry14);
+      $('#exampleModal').modal('hide');  //close the modal window
+      location.reload();
+      renderReportHistory();  //"dynamically" re-renders all of the reports (including the newly added one) after the submit button has been clicked.
+    }
 });
 
 $('#todays-date-modal').on('click', function() {
@@ -163,6 +226,10 @@ $(document).ready(function() {
     // CSS
     $(this).css('color', 'red');
 });
+
+///////////////////////////
+// RENDER REPORT HISTORY //
+///////////////////////////
 
 function renderReportHistory(){
   var settings = {
@@ -199,39 +266,66 @@ function renderReportHistory(){
     $('#todaysReportNo').text("Ingestion not yet completed for today");
     $('#todaysReportYes').text(""); //clear the one its not
   }
+
+  //render the current streak
+  var streak = run.getCurrRecord(reports);
+  console.log('current streak is: ', streak);
+  $.trim($('#new-record').text(streak));
+
   console.log('Bout to render the last report: ' + lastReport.completion_time);
   renderReport(lastReport);
 
   function renderReport(report){
     console.log('renderReport function called, received report: ' + report.success);
     $.trim($('#report_date').text(report.report_date));
+
+    //changes text to orange if the current rendered report isnt from today date
+    if($('#report_date').text() != today){
+      $('#report-date-h3-text').css("color", "#F0A854");
+    }
+    else{
+      $('#report-date-h3-text').css("color", "");
+    }
+
     $.trim($('#completion_time').text(report.completion_time));
     $.trim($('#queries_failed').text(report.queries_failed));
     $.trim($('#comments').text(report.comments));
+
     // $.trim($('#queries_passed').text(report.queries_passed));
     //
     // $('#queries_passed');
 
-    if(report.success)
-      $.trim($('#success').text('🙌 Success 🙌'));
-    else
-      $.trim($('#success').text('❌ Failed ❌'));
+    if(report.report_date != today) {
+      $('#success').html('<h2><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i></h2>');
+      console.log("true got hit");
+    } else if(report.success) {
+      $('#success').html('<h1><i class="fa fa-check" style="color:#00BF6F;" aria-hidden="true"></i> Failed</h1>');
+      console.log('false got hit');
+    } else {
+        $('#success').html('<h1><i class="fa fa-times" style="color:#FE5000;" aria-hidden="true"></i> Failed</h1>');
+      }
   }
 }
+
+////////////////////////
+// RENDER ERP HISTORY //
+////////////////////////
 
 function renderErpHistory(){
   var settings = {
     "async": false,
     "crossDomain": true,
-    "url": "http://localhost:3000/api/erps", // Get request to the api
+    "url": "http://localhost:3000/api/erps/limit14", // Get request to the api
     "method": "GET",
     "headers": {
       "cache-control": "no-cache",
       "postman-token": "0a660068-7f1f-f9d9-a60a-9e5a8bf7c4e8"
     }
   }
-  // Makes the Ajax call and stores it in the postgres variable
+  // Makes the Ajax call and stores it in the erps variable
   var erps = $.ajax(settings).done().responseJSON.reverse();
+  var erpsSliced = erps.slice(0,5);
+  console.log(erpsSliced);
   console.log('erps length: '+ erps.length);
   // Logs the Ajax response to verify it went through okay
   console.log('Ajax response:', erps);
@@ -250,13 +344,134 @@ function renderErpHistory(){
   var powermax = erps[11];
   var races = erps[12];
   var zeal = erps[13];
+
+  var successIcon = '<h2><i class="fa fa-check" style="color:#00BF6F;" aria-hidden="true"></i></h2>';
+  var failIcon = '<h2><i class="fa fa-times" style="color:#FE5000;" aria-hidden="true"></i></h2>';
+
+  // var powerStats = alpha, powermax, ofs;
+  // var energyConnectionsStatus = altais, apcis, bravo, fusion, ipus;
+  // var healthcareStatus = glprod;
+  // var getErpSatus = get_erp;
+  // var multiModalStatus = omega, zeal;
+
+
+  powerStatus(alpha, powermax, ofs);
+  energyConnectionsStatus(altais, apcis, bravo, fusion, ipus);
+  healthCareStatus(glprod);
+  transportationStatus(get_erp);
+  multiModalStatus(omega, zeal);
+  oilGasStatus(pascal);
+  renewablesStatus(powermax, races);
+
+
+  function powerStatus(alpha, powermax, ofs){
+    var powerStatus;
+
+    if(alpha.is_failure === false && powermax.is_failure === false && ofs.is_failure === false){
+      powerStatus = true;
+      $('#powerStatus').html(successIcon);
+    }
+    else {
+      powerStatus = false;
+      $('#powerStatus').html(failIcon);
+    }
+    console.log('power status: ' + powerStatus);
+  };
+
+  function energyConnectionsStatus(altais, apcis, bravo, fusion, ipus){
+    var energyConnectionsStatus;
+
+    if(altais.is_failure === false && apcis.is_failure === false && bravo.is_failure === false && fusion.is_failure === false && ipus.is_failure === false){
+      energyConnectionsStatus = true;
+      $('#energyConnectionsStatus').html(successIcon);
+    }
+    else {
+      energyConnectionsStatus = false;
+      $('#energyConnectionsStatus').html(failIcon);
+    }
+    console.log('EC status: ' + energyConnectionsStatus);
+  };
+
+  function healthCareStatus(glprod){
+    var healthCareStatus;
+
+    if(glprod.is_failure === false){
+      healthCareStatus = true;
+      $('#healthCareStatus').html(successIcon);
+    }
+    else {
+      healthCareStatus = false;
+      $('#healthCareStatus').html(failIcon);
+    }
+    console.log('HC status: ' + healthCareStatus);
+  };
+
+  function transportationStatus(get_erp){
+    var transportationStatus;
+
+    if(get_erp.is_failure === false){
+      transportationStatus = true;
+      $('#transportationStatus').html(successIcon);
+    }
+    else {
+      transportationStatus = false;
+      $('#transportationStatus').html(failIcon);
+    }
+    console.log('power status: ' + transportationStatus);
+  };
+
+  function multiModalStatus(omega, zeal){
+    var multiModalStatus;
+
+    if(omega.is_failure === false && zeal.is_failure === false){
+      multiModalStatus = true;
+      $('#multiModalStatus').html(successIcon);
+    }
+    else {
+      multiModalStatus = false;
+      $('#multiModalStatus').html(failIcon);
+    }
+    console.log('MM status: ' + multiModalStatus);
+  };
+
+  function oilGasStatus(pascal){
+    var oilGasStatus;
+
+    if(pascal.is_failure === false){
+      oilGasStatus = true;
+      $('#oilGasStatus').html(successIcon);
+    }
+    else {
+      oilGasStatus = false;
+      $('#oilGasStatus').html(failIcon);
+    }
+    console.log('oil and gas status: ' + oilGasStatus);
+  };
+
+  function renewablesStatus(powermax, races){
+    var renewablesStatus;
+
+    if(powermax.is_failure === false && races.is_failure === false){
+      renewablesStatus = true;
+      $('#renewablesStatus').html(successIcon);
+    }
+    else {
+      renewablesStatus = false;
+      $('#renewablesStatus').html(failIcon);
+    }
+    console.log('Rewnewables status: ' + renewablesStatus);
+  };
+
+
+
+
+
   renderErp(alpha, altais, apcis, bravo, fusion, glprod, get_erp, ipus, omega, ofs, pascal, powermax, races, zeal);
 
 
 
   function renderErp(alpha, altais, apcis, bravo, fusion, glprod, get_erp, ipus, omega, ofs, pascal, powermax, races, zeal){
     console.log('renderErp function called, received report: ' + erps.success);
-    // $.trim($('#alpha').text(alpha.is_failure));
     $.trim($('#altais').text(altais.is_failure));
     $.trim($('#apcis').text(apcis.is_failure));
     $.trim($('#bravo').text(bravo.is_failure));
@@ -271,74 +486,77 @@ function renderErpHistory(){
     $.trim($('#races').text(races.is_failure));
     $.trim($('#zeal').text(zeal.is_failure));
 
+    var successIcon = '<h2><i class="fa fa-check" style="color:#00BF6F;" aria-hidden="true"></i></h2>';
+    var failIcon = '<h2><i class="fa fa-times" style="color:#FE5000;" aria-hidden="true"></i></h2>';
+
     if(alpha.is_failure)
-      $.trim($('#alpha').text('❌'));
+      $.trim($('#alpha').html(failIcon));
     else
-      $.trim($('#alpha').text('✅'));
+      $('#alpha').html(successIcon);
 
     if(altais.is_failure)
-      $.trim($('#altais').text('❌'));
+      $.trim($('#altais').html(failIcon));
     else
-      $.trim($('#altais').text('✅'));
+      $.trim($('#altais').html(successIcon));
 
     if(apcis.is_failure)
-      $.trim($('#apcis').text('❌'));
+      $.trim($('#apcis').html(failIcon));
     else
-      $.trim($('#apcis').text('✅'));
+      $.trim($('#apcis').html(successIcon));
 
     if(bravo.is_failure)
-      $.trim($('#bravo').text('❌'));
+      $.trim($('#bravo').html(failIcon));
     else
-      $.trim($('#bravo').text('✅'));
+      $.trim($('#bravo').html(successIcon));
 
     if(fusion.is_failure)
-      $.trim($('#fusion').text('❌'));
+      $.trim($('#fusion').html(failIcon));
     else
-      $.trim($('#fusion').text('✅'));
+      $.trim($('#fusion').html(successIcon));
 
     if(glprod.is_failure)
-      $.trim($('#glprod').text('❌'));
+      $.trim($('#glprod').html(failIcon));
     else
-      $.trim($('#glprod').text('✅'));
+      $.trim($('#glprod').html(successIcon));
 
     if(get_erp.is_failure)
-      $.trim($('#get_erp').text('❌'));
+      $.trim($('#get_erp').html(failIcon));
     else
-      $.trim($('#get_erp').text('✅'));
+      $.trim($('#get_erp').html(successIcon));
 
     if(ipus.is_failure)
-      $.trim($('#ipus').text('❌'));
+      $.trim($('#ipus').html(failIcon));
     else
-      $.trim($('#ipus').text('✅'));
+      $.trim($('#ipus').html(successIcon));
 
     if(omega.is_failure)
-      $.trim($('#omega').text('❌'));
+      $.trim($('#omega').html(failIcon));
     else
-      $.trim($('#omega').text('✅'));
+      $.trim($('#omega').html(successIcon));
 
     if(ofs.is_failure)
-      $.trim($('#ofs').text('❌'));
+      $.trim($('#ofs').html(failIcon));
     else
-      $.trim($('#ofs').text('✅'));
+      $.trim($('#ofs').html(successIcon));
 
     if(pascal.is_failure)
-      $.trim($('#pascal').text('❌'));
+      $.trim($('#pascal').html(failIcon));
     else
-      $.trim($('#pascal').text('✅'));
+      $.trim($('#pascal').html(successIcon));
 
     if(powermax.is_failure)
-      $.trim($('#powermax').text('❌'));
+      $.trim($('#powermax').html(failIcon));
     else
-      $.trim($('#powermax').text('✅'));
+      $.trim($('#powermax').html(successIcon));
 
     if(races.is_failure)
-      $.trim($('#races').text('❌'));
+      $.trim($('#races').html(failIcon));
     else
-      $.trim($('#races').text('✅'));
+      $.trim($('#races').html(successIcon));
 
     if(zeal.is_failure)
-      $.trim($('#zeal').text('❌'));
+      $.trim($('#zeal').html(failIcon));
     else
-      $.trim($('#zeal').text('✅'));
+      $.trim($('#zeal').html(successIcon));
   }
 }
